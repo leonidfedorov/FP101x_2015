@@ -1,0 +1,17 @@
+e0 = [False, True, False, True]
+e1 = [[1,2], [3,4]]
+e2 = [[[1, 2, 3]], [[3, 4, 5]]]
+e3 x = x * 2
+e4 (x, y) = x
+e5 (x, y, z) = z
+e6 x y = x * y
+e7 (x, y) = (y, x)
+e8 x y = (y, x)
+e9 [x, y] = (x, True)
+e10 (x, y) = [x, y]
+e11 = ('\a', True)
+e12 = [('a', 1)]
+e13 x y = x + y * y --belongs to the Num Class of Types in HUGS and therefore is correct answer to ex13
+e13_2 x y = x / y -- belongs to the Fractional Class of Types in HUGS and is not correct answer to ex13
+e14 = ("Haskell", [3.1, 3.14, 3.141, 3.1315])
+e15 xs ys = (head xs, head ys)
