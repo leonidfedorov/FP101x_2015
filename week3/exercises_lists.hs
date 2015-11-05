@@ -38,8 +38,10 @@ xs1 = 1 : [x + 1 | x <- xs1] -- infinite list starting at 1
 
 riffle xs ys = concat [[x, y] | (x,y) <- xs `zip` ys]
 
-divides x y 
+divides1 x y = x `mod` y == 0
+
+divides2 x y
 	| x `mod` y == 0 = True
 	| otherwise = False
 
-divisors x = [d | d <- [1 .. x], x `divides` d]
+divisors x = [d | d <- [1 .. x], x `divides1` d]
