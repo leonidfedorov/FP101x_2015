@@ -4,33 +4,48 @@ module Lab2 where
 -- Lab 2: Validating Credit Card Numbers
 ------------------------------------------------------------------------------------------------------------------------------
 
+
+firstDigit :: Integer -> Integer
+firstDigit x
+  | x < 10 = x 
+  | otherwise = firstDigit (( x - x `mod` 10 ) `div` 10)
+
+
 -- ===================================
 -- Ex. 0
--- ===================================
+-- ===================================\
+--use this for testing
+eval xs = foldl (\ x  y -> y + (10 * x)) 0 xs
 
 toDigits :: Integer -> [Integer]
-toDigits = undefined
+toDigits x
+  | x < 10 = [x] 
+  | otherwise = toDigits ((x - x `mod` 10) `div` 10) ++ [x `mod` 10]
 
--- ===================================
 -- Ex. 1
 -- ===================================
+--use this for testing
+evalRev xs = foldr (\ x y -> x + (10 * y)) 0 xs
 
 toDigitsRev :: Integer -> [Integer]
-toDigitsRev = undefined
+toDigitsRev x = reverse (toDigits x)
 
 -- ===================================
 -- Ex. 2
 -- ===================================
 
 doubleSecond :: [Integer] -> [Integer]
-doubleSecond = undefined
+doubleSecond [] = []
+doubleSecond [x] = [x]
+doubleSecond (x : xs) = x : (2 * head xs) : doubleSecond(tail xs)
 
 -- ===================================
 -- Ex. 3
 -- ===================================
 
 sumDigits :: [Integer] -> Integer
-sumDigits = undefined
+sumDigits [x] = sum (toDigits x)
+sumDigits (x : xs) = sum ( toDigits x ) + sumDigits xs
 
 
 -- ===================================
@@ -38,7 +53,9 @@ sumDigits = undefined
 -- ===================================
 
 isValid :: Integer -> Bool
-isValid = undefined
+isValid n 
+  | 0 == (sumDigits(doubleSecond(toDigitsRev(n))) `mod` 10) = True
+  | otherwise = False
 
 
 -- ===================================
