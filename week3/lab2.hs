@@ -19,8 +19,8 @@ eval xs = foldl (\ x  y -> y + (10 * x)) 0 xs
 
 toDigits :: Integer -> [Integer]
 toDigits x
-  | x < 10 = [x] 
-  | otherwise = toDigits ((x - x `mod` 10) `div` 10) ++ [x `mod` 10]
+  | x < 10 = [x]
+  | otherwise = toDigits (x `div` 10) ++ [x `mod` 10]
 
 -- Ex. 1
 -- ===================================
@@ -44,6 +44,7 @@ doubleSecond (x : xs) = x : (2 * head xs) : doubleSecond(tail xs)
 -- ===================================
 
 sumDigits :: [Integer] -> Integer
+sumDigits [] = 0
 sumDigits [x] = sum (toDigits x)
 sumDigits (x : xs) = sum ( toDigits x ) + sumDigits xs
 
